@@ -1,0 +1,40 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Folders
+_obj
+_test
+
+# Architecture specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+
+_testmain.go
+
+*.exe
+*.test
+*.prof
+
+# Various
+*~
+*.iws
+*.ipr
+*.iml
+.idea/
+.idea
+.DS_Store
+
+# Specific project files
+releases
+data/audio
+data/bot/bot-test.json
+data/bot/mastrobot.json
+data/bot/giannibot.json
