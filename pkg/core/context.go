@@ -21,7 +21,7 @@ func (context *GamelContext) Start() {
 	context.Status = Started
 }
 
-func (context *GamelContext) GetComponent(name string) (Component, error){
+func (context GamelContext) GetComponent(name string) (Component, error){
 
 	switch name {
 	case "timer":

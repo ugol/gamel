@@ -1,7 +1,8 @@
 package core
 
 type Component interface {
-	Name()	string
+	Name()			string
+	NewEndpoint(uri string)	(Endpoint, error)
 }
 
 type DefaultComponent struct {
