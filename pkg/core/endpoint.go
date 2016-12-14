@@ -3,12 +3,10 @@ package core
 import "errors"
 
 type Endpoint interface {
-	Component()	Component
-
-	Uri()		string
-
-	NewConsumer()	(Consumer, error)
-	NewProducer()	(Producer, error)
+	Component()		Component
+	Uri()			string
+	NewConsumer(Processor)	(Consumer, error)
+	NewProducer()		(Producer, error)
 
 }
 
@@ -25,7 +23,7 @@ func (endpoint DefaultEndpoint) Uri() string {
 	return endpoint.uri
 }
 
-func (endpoint DefaultEndpoint) NewConsumer() (Consumer, error) {
+func (endpoint DefaultEndpoint) NewConsumer(processor Processor) (Consumer, error) {
 	return nil, errors.New("this endpoint doesn't provide a consumer")
 }
 

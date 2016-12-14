@@ -4,8 +4,12 @@ type TimerEndpoint struct {
 	DefaultEndpoint
 }
 
-func (endpoint TimerEndpoint) NewConsumer() (Consumer, error) {
+func (endpoint TimerEndpoint) NewConsumer(processor Processor) (Consumer, error) {
 	return &TimerConsumer{
-		DefaultConsumer{endpoint: endpoint},
+		DefaultConsumer: DefaultConsumer{
+			endpoint: endpoint,
+			processor: processor,
+		},
+		quit: nil,
 	}, nil
 }

@@ -6,9 +6,7 @@ import (
 )
 
 func TestTimerConsumerCreation(t *testing.T) {
-	context := GamelContext{
-		Name: "gamel",
-	}
+	context := NewGamelContext()
 
 	component, _ := context.GetComponent("timer")
 
@@ -17,8 +15,10 @@ func TestTimerConsumerCreation(t *testing.T) {
 	uri := endpoint.Uri()
 	assert.Equal(t, "timer:tick?period=3000", uri)
 
-	consumer, _ := endpoint.NewConsumer()
-	assert.NotNil(t, consumer)
+	logComponent, _ := context.GetComponent("log")
+	logEndpoint, _ := logComponent.NewEndpoint("log:INFO")
+	logProducer, _ := logEndpoint.NewProducer()
 
-	consumer.Start()
+	consumer, _ := endpoint.NewConsumer(logProducer)
+	assert.NotNil(t, consumer)
 }
