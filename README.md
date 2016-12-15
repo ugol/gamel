@@ -2,7 +2,7 @@
 
 Gamel is an experimental framework to reimplement most of [Apache Camel](http://camel.apache.org) in Go.
 
-```
+```go
 	context := core.NewGamelContext()
 	route, _ := core.NewRouteBuilder(context).
 		From("timer:tick?period=2000").
@@ -14,4 +14,4 @@ Gamel is an experimental framework to reimplement most of [Apache Camel](http://
 
 	time.Sleep(20 * time.Second)
 	context.Stop()
-``
+```
