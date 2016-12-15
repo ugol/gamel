@@ -2,6 +2,7 @@ package core
 
 import (
 	"testing"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -40,4 +41,23 @@ func TestComponentFromURI(t *testing.T) {
 
 	_, err2 := timer.(TimerComponent)
 	assert.False(t, err2)
+}
+
+func TestContextLifecycle(t *testing.T) {
+	context := NewGamelContext().WithName("gamel-1")
+
+	assert.Equal(t, "gamel-1", context.Name())
+	assert.Equal(t, Idle, context.Status())
+
+	context.Start()
+	assert.Equal(t, Started, context.Status())
+
+	context.Suspend()
+	assert.Equal(t, Suspended, context.Status())
+
+	context.Resume()
+	assert.Equal(t, Resumed, context.Status())
+
+	context.Stop()
+	assert.Equal(t, Stopped, context.Status())
 }

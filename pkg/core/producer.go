@@ -2,13 +2,11 @@ package core
 
 type Producer interface {
 	Processor
-	Endpoint()	Endpoint
+	Endpoint() Endpoint
 }
 
 type DefaultProducer struct {
-
-	endpoint	Endpoint
-
+	endpoint Endpoint
 }
 
 func (producer DefaultProducer) Endpoint() Endpoint {
@@ -20,5 +18,13 @@ func (producer *DefaultProducer) Start() error {
 }
 
 func (producer *DefaultProducer) Stop() error {
+	return nil
+}
+
+func (producer *DefaultProducer) Suspend() error {
+	return nil
+}
+
+func (producer *DefaultProducer) Resume() error {
 	return nil
 }
