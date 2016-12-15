@@ -39,6 +39,30 @@ func (route *DefaultRoute) Stop() error {
 	return globalErr
 }
 
+func (route *DefaultRoute) Suspend() error {
+	// TODO return a composite error
+	var globalErr error
+	for i := 0; i < len(route.services); i++ {
+		err := route.services[i].Suspend()
+		if err != nil {
+			globalErr = err
+		}
+	}
+	return globalErr
+}
+
+func (route *DefaultRoute) Resume() error {
+	// TODO return a composite error
+	var globalErr error
+	for i := 0; i < len(route.services); i++ {
+		err := route.services[i].Resume()
+		if err != nil {
+			globalErr = err
+		}
+	}
+	return globalErr
+}
+
 func (route DefaultRoute) Services() []Service {
 	return route.services
 }

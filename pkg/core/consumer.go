@@ -2,21 +2,20 @@ package core
 
 type Consumer interface {
 	Service
-	Endpoint()	Endpoint
-	Processor()	Processor
+	Endpoint() Endpoint
+	Processor() Processor
 }
 
-
 type DefaultConsumer struct {
-	endpoint	Endpoint
-	processor	Processor
+	endpoint  Endpoint
+	processor Processor
 }
 
 func (consumer DefaultConsumer) Endpoint() Endpoint {
 	return consumer.endpoint
 }
 
-func (consumer DefaultConsumer) Processor() Processor{
+func (consumer DefaultConsumer) Processor() Processor {
 	return consumer.processor
 }
 
@@ -25,5 +24,13 @@ func (consumer *DefaultConsumer) Start() error {
 }
 
 func (consumer *DefaultConsumer) Stop() error {
+	return nil
+}
+
+func (consumer *DefaultConsumer) Suspend() error {
+	return nil
+}
+
+func (consumer *DefaultConsumer) Resume() error {
 	return nil
 }
