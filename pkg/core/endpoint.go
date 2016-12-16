@@ -1,13 +1,16 @@
 package core
 
-import "errors"
+import (
+	"errors"
+	"net/url"
+)
 
 type Endpoint interface {
 	Component()		Component
 	Uri()			string
+	Parameter(string)       string
 	NewConsumer(Processor)	(Consumer, error)
 	NewProducer()		(Producer, error)
-
 }
 
 type DefaultEndpoint struct {
@@ -29,4 +32,11 @@ func (endpoint DefaultEndpoint) NewConsumer(processor Processor) (Consumer, erro
 
 func (endpoint DefaultEndpoint) NewProducer() (Producer, error) {
 	return nil, errors.New("this endpoint doesn't provide a producer")
+}
+
+func (endpoint DefaultEndpoint) Parameter(name string) string {
+	parsedUrl, _ := url.Parse(endpoint.uri)
+	query := parsedUrl.RawQuery
+	v, _ := url.ParseQuery(query)
+	return v.Get(name)
 }

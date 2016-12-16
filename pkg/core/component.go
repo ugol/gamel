@@ -12,3 +12,4 @@ type DefaultComponent struct {
 func (component DefaultComponent) Name() string {
 	return component.name
 }
+

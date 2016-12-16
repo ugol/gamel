@@ -14,6 +14,8 @@ func TestTimerConsumerCreation(t *testing.T) {
 
 	uri := endpoint.Uri()
 	assert.Equal(t, "timer:tick?period=3000", uri)
+	period := endpoint.Parameter("period")
+	assert.Equal(t, "3000", period)
 
 	logComponent, _ := context.GetComponent("log")
 	logEndpoint, _ := logComponent.NewEndpoint("log:INFO")

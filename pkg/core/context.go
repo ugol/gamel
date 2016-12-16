@@ -96,12 +96,12 @@ func (context DefaultGamelContext) GetComponent(name string) (Component, error){
 }
 
 func (context DefaultGamelContext) GetComponentFromURI(uri string) (Component, error){
-	url, err := url.Parse(uri)
+	parsedUrl, err := url.Parse(uri)
 	if err != nil {
 		return nil, err
 	}
 
-	name := url.Scheme
+	name := parsedUrl.Scheme
 	return context.GetComponent(name)
 }
 

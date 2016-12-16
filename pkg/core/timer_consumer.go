@@ -2,6 +2,7 @@ package core
 
 import (
 	"time"
+	"strconv"
 )
 
 type TimerConsumer struct {
@@ -11,7 +12,8 @@ type TimerConsumer struct {
 }
 
 func (consumer *TimerConsumer) Start() error {
-	ticker := time.NewTicker(2 * time.Second)
+	period, _ := strconv.Atoi(consumer.endpoint.Parameter("period"))
+	ticker := time.NewTicker(time.Duration(period) * time.Second)
 	consumer.quit = make(chan struct{})
 	counter:=1
 	go func() {
