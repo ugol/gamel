@@ -11,7 +11,7 @@ func main() {
 	context := core.NewGamelContext()
 
 	route, _ := core.NewRouteBuilder(context).
-		From("timer:tick?period=2000").
+		From("timer:tick?period=1000").
 		To("log:INFO").
 		Build()
 

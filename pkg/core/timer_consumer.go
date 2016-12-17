@@ -13,7 +13,7 @@ type TimerConsumer struct {
 
 func (consumer *TimerConsumer) Start() error {
 	period, _ := strconv.Atoi(consumer.endpoint.Parameter("period"))
-	ticker := time.NewTicker(time.Duration(period) * time.Second)
+	ticker := time.NewTicker(time.Duration(period) * time.Millisecond)
 	consumer.quit = make(chan struct{})
 	counter:=1
 	go func() {
